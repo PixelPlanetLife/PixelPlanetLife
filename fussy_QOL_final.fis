@@ -1,0 +1,67 @@
+[System]
+Name='fussy_QOL_final'
+Type='mamdani'
+Version=2.0
+NumInputs=5
+NumOutputs=1
+NumRules=6
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Population'
+Range=[800 5400]
+NumMFs=3
+MF1='Low_Population':'gaussmf',[500 800]
+MF2='Mid_Population':'gaussmf',[500 2000]
+MF3='Hi_population':'gaussmf',[781.4 5339]
+
+[Input2]
+Name='Road_Length'
+Range=[0 1]
+NumMFs=2
+MF1='BadRoads':'gaussmf',[0.299 6.939e-18]
+MF2='GoodRoads':'gaussmf',[0.399 1]
+
+[Input3]
+Name='Forestness'
+Range=[0.1 0.7]
+NumMFs=3
+MF1='Low_Forest':'gaussmf',[0.05 0.1]
+MF2='Mid_Forest':'gaussmf',[0.05 0.2]
+MF3='High_Forest':'gaussmf',[0.1019 0.7]
+
+[Input4]
+Name='AgriDevelopment'
+Range=[0.1 0.9]
+NumMFs=3
+MF1='LowAgri':'gaussmf',[0.1359 0.1]
+MF2='MIdAgri':'gaussmf',[0.1359 0.5]
+MF3='HiAgri':'gaussmf',[0.1359 0.9]
+
+[Input5]
+Name='AtmospherePollution'
+Range=[2 57]
+NumMFs=3
+MF1='Low':'gaussmf',[6.471 2.042]
+MF2='Mid':'gaussmf',[6.471 10]
+MF3='Hi':'gaussmf',[25 57]
+
+[Output1]
+Name='QOL'
+Range=[0 1]
+NumMFs=3
+MF1='Low':'gaussmf',[0.1699 6.939e-18]
+MF2='Mid':'gaussmf',[0.1699 0.5]
+MF3='Hi':'gaussmf',[0.1699 1]
+
+[Rules]
+0 2 3 3 1, 3 (1) : 1
+1 1 0 3 -3, 2 (1) : 1
+0 2 0 0 1, 3 (1) : 1
+0 1 0 1 3, 1 (1) : 1
+1 1 0 3 -3, 2 (1) : 1
+3 2 1 0 -3, 2 (1) : 1
